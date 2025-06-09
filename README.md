@@ -16,7 +16,7 @@ This repository uses a flexible Dockerfile, allowing you to build specific Flaru
 -   Multi-platform image: `linux/amd64`, `linux/arm64`
 -   Lightweight & secure image based on **Alpine Linux 3.18**
 -   **Nginx** and **PHP 8.2**
--   Configurable Flarum Version (Defaults to `v1.8.X`)
+-   Configurable Flarum version
 -   MariaDB driver
 -   OPCache extension configured
 
