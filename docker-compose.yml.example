@@ -1,0 +1,47 @@
+services:
+  mariadb:
+    image: mariadb:10.5
+    container_name: flarum-db
+    restart: unless-stopped
+    environment:
+      # SET YOUR DATABASE CREDENTIALS HERE
+      MYSQL_ROOT_PASSWORD: some_secure_password
+      MYSQL_DATABASE: flarum
+      MYSQL_USER: flarum
+      MYSQL_PASSWORD: some_secure_password
+    volumes:
+      - dbdata:/var/lib/mysql
+
+  flarum:
+    build:
+      context: .
+      args:
+        - FLARUM_VERSION=v1.8.1
+    container_name: flarum
+    restart: unless-stopped
+    environment:
+      # SET YOUR FORUM DETAILS AND MATCH THE DATABASE CREDENTIALS
+      DB_HOST: mariadb
+      DB_NAME: flarum
+      DB_USER: flarum
+      DB_PASS: some_secure_password
+      FLARUM_ADMIN_USER: admin
+      FLARUM_ADMIN_PASS: another_strong_password
+      FLARUM_ADMIN_MAIL: admin@example.com
+      FLARUM_TITLE: "My Forum"
+      FORUM_URL: http://localhost:8080
+    ports:
+      - "8080:8888"
+    depends_on:
+      - mariadb
+    volumes:
+      - flarum_assets:/flarum/app/public/assets
+      - flarum_logs:/flarum/app/storage/logs
+      - flarum_extensions:/flarum/app/extensions
+      - ./packages:/flarum/app/packages
+
+volumes:
+  dbdata:
+  flarum_assets:
+  flarum_logs:
+  flarum_extensions:
