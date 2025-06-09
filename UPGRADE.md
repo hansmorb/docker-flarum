@@ -1,4 +1,33 @@
-# Guide for upgrade your flarum container
+# Guide for upgrading your flarum container
+
+### v.1.3.0 to v1.8.*
+
+See the [official Flarum docs](https://docs.flarum.org/update/) for updating.
+
+1. Enter the container.
+
+```bash
+docker compose exec flarum /bin/sh
+```
+
+2. Run the Composer Update in `/flarum/app`
+
+```bash
+cd /flarum/app
+composer require flarum/core:^1.8 -W
+```
+
+3. Migrate.
+
+```bash
+php flarum migrate
+```
+
+4. Clear cache.
+
+```bash
+php flarum cache:clear
+```
 
 ### Upgrade to v1.3.0 from v1.2.0
 

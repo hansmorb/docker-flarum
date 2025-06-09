@@ -2,3 +2,4 @@ docker-compose.yml
 docker
 flarum.env
 test.sh
+packages/
