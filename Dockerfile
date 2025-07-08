@@ -3,7 +3,7 @@ FROM alpine:3.18
 LABEL description="Simple forum software for building great communities" \
       maintainer="kitbur <https://github.com/kitbur>"
 
-ARG FLARUM_VERSION="v2.0.0-beta.3"
+ARG FLARUM_VERSION="v1.8.1"
 
 ENV GID=991 \
     UID=991 \

@@ -2,14 +2,13 @@
 
 ![logo](https://i.imgur.com/Bjrtbsc.png)
 
-This repository provides a stable and working `docker-compose` setup for Flarum, based on the popular `mondedie/flarum` configuration, but updated and fixed for a modern Flarum environment.
+This repository provides a stable and working `docker-compose` setup for Flarum, based on the popular `mondedie/flarum` configuration, updated and fixed for a modern Flarum environment in `kitbur/flarum` and forked by myself to have more control over the image.
+
+This image was originally using Alpine 3.18 and PHP 8.2. Currently we are using PHP 8.4 and Alpine 3.22. Some documentation might still mention the old versions by accident.
 
 ## Tagged Releases
 
-This repository uses a flexible Dockerfile, allowing you to build specific Flarum versions. The following releases are tested configurations.
-
-- **v2.0.0-beta.3 (Beta)** - [Dockerfile](https://github.com/kitbur/docker-flarum/blob/v2.0.0-beta.3/Dockerfile)
-- **v1.8.10 (Stable)** - [Dockerfile](https://github.com/kitbur/docker-flarum/blob/v1.8.10/Dockerfile)
+This repository fixes the Flarum version to use a stable version (currently v.1.8.1)
 
 ## Features
 
@@ -69,7 +68,7 @@ This repository uses a flexible Dockerfile, allowing you to build specific Flaru
 #### 1. Clone The Repository
 
 ```bash
-git clone https://github.com/kitbur/docker-flarum.git
+git clone https://github.com/hansmorb/docker-flarum.git
 cd docker-flarum
 ```
 
