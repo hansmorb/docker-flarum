@@ -2,7 +2,7 @@
 
 ![logo](https://i.imgur.com/Bjrtbsc.png)
 
-This repository provides a stable and working `docker-compose` setup for Flarum, based on the popular `mondedie/flarum` configuration, updated and fixed for a modern Flarum environment in `kitbur/flarum` and forked by myself to have more control over the image.
+This repository provides a stable and working `docker-compose` setup for Flarum, based on the popular `mondedie/docker-flarum` configuration, updated and fixed for a modern Flarum environment in `kitbur/docker-flarum` and forked by myself (`hansmorb/docker-flarum`) to have more control over the image.
 
 This image was originally using Alpine 3.18 and PHP 8.2. Currently we are using PHP 8.4 and Alpine 3.22. Some documentation might still mention the old versions by accident.
 
@@ -93,6 +93,28 @@ docker-compose up -d --build
 
 Your forum will be live at the `FORUM_URL` you configured. Visit the site and log in with your database credentials, as well as the `FLARUM_ADMIN_USER` and `FLARUM_ADMIN_PASS` you set in the `docker-compose.yml` file.
 
+
+### Install custom extensions
+
+**Flarum extensions list :** https://flarum.org/extensions
+
+#### Install an extension
+
+```sh
+docker exec -ti flarum extension require some/extension
+```
+
+#### Remove an extension
+
+```sh
+docker exec -ti flarum extension remove some/extension
+```
+
+#### List all extensions
+
+```sh
+docker exec -ti flarum extension list
+```
 ---
 
 ## License
