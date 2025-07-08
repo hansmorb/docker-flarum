@@ -1,4 +1,4 @@
-FROM alpine:3.18
+FROM alpine:3.22
 
 LABEL description="Simple forum software for building great communities" \
       maintainer="kitbur <https://github.com/kitbur>"
@@ -51,7 +51,8 @@ RUN apk add --no-progress --no-cache \
     php82-zip \
     php82-zlib \
     su-exec \
-    s6
+    s6 \
+    s6-overlay
 
 RUN ln -s /usr/bin/php82 /usr/bin/php
 
