@@ -1,0 +1,47 @@
+# https://docs.docker.com/compose/environment-variables/
+services:
+  mariadb:
+    image: mariadb:${MARIADB_IMAGE_TAG}
+    container_name: flarum-db
+    restart: ${RESTART_POLICY}
+    environment:
+     - MYSQL_ROOT_PASSWORD=${MYSQL_ROOT_PASSWORD}
+     - MYSQL_DATABASE=${MYSQL_DATABASE}
+     - MYSQL_USER=${MYSQL_USER}
+     - MYSQL_PASSWORD=${MYSQL_PASSWORD}
+    volumes:
+      - ${MARIADB_DATA_PATH}:/var/lib/mysql
+    healthcheck:
+      test: ["CMD", "healthcheck.sh", "--connect", "--innodb_initialized"]
+      start_period: 10s
+      interval: 10s
+      timeout: 5s
+      retries: 3
+      
+  flarum:
+    build:
+      context: .
+      args:
+        - FLARUM_VERSION=${FLARUM_VERSION_TAG}
+    container_name: flarum
+    restart: ${RESTART_POLICY}
+    environment:
+      DB_HOST: mariadb
+      DB_NAME: ${MYSQL_DATABASE}
+      DB_USER: ${MYSQL_USER}
+      DB_PASS: ${MYSQL_PASSWORD}
+      FLARUM_ADMIN_USER: ${FLARUM_ADMIN_USER}
+      FLARUM_ADMIN_PASS: ${FLARUM_ADMIN_PASSWORD}
+      FLARUM_ADMIN_MAIL: ${FLARUM_ADMIN_EMAIL}
+      FLARUM_TITLE: ${FLARUM_FORUM_TITLE}
+      FORUM_URL: ${FLARUM_URL}
+    ports:
+      - ${FLARUM_PORT}:8888
+    depends_on:  # Wait for healthy status
+      mariadb:
+        condition: service_healthy
+    volumes:
+      - ${FLARUM_ASSETS_PATH}:/flarum/app/public/assets
+      - ${FLARUM_LOGS_PATH}:/flarum/app/storage/logs
+      - ${FLARUM_EXTENSIONS_PATH}:/flarum/app/extensions
+      - ${FLARUM_PACKAGES_PATH}:/flarum/app/packages

@@ -4,6 +4,8 @@
 
 This repository provides a stable and working `docker-compose` setup for Flarum, based on the popular `mondedie/docker-flarum` configuration, updated and fixed for a modern Flarum environment in `kitbur/docker-flarum` and forked by myself (`hansmorb/docker-flarum`) to have more control over the image.
 
+Another main difference to the `mondedie/docker-flarum` and `kitbur/docker-flarum` repo is, that the variables are passed to the docker-compose file through the .env file. We do this so that we can make changes in the docker-compose in this repo.
+
 This image was originally using Alpine 3.18 and PHP 8.2. Currently we are using PHP 8.4 and Alpine 3.22. Some documentation might still mention the old versions by accident.
 
 ## Tagged Releases
@@ -74,12 +76,12 @@ cd docker-flarum
 
 #### 2. Create Your Local Configuration
 
-Copy the example compose file to create your own local configuration.
+Copy the example env file to create your own local configuration.
 
 ```bash
-cp docker-compose.yml.example docker-compose.yml
+cp env.example .env
 ```
-Edit the `environment:` section to set your own secure passwords, forum title, admin user, public URL, and any other configurations you want.
+Set your own secure passwords, forum title, admin user, public URL, and any other configurations you want.
 
 #### 3. Run It!
 
@@ -91,7 +93,7 @@ docker-compose up -d --build
 
 #### 4. Log In
 
-Your forum will be live at the `FORUM_URL` you configured. Visit the site and log in with your database credentials, as well as the `FLARUM_ADMIN_USER` and `FLARUM_ADMIN_PASS` you set in the `docker-compose.yml` file.
+Your forum will be live at the `FORUM_URL` you configured. Visit the site and log in with your database credentials, as well as the `FLARUM_ADMIN_USER` and `FLARUM_ADMIN_PASS` you set in the `.env` file.
 
 
 ### Install custom extensions
