@@ -11,6 +11,7 @@ services:
      - MYSQL_PASSWORD=${MYSQL_PASSWORD}
     volumes:
       - ${MARIADB_DATA_PATH}:/var/lib/mysql
+      - ${MARIADB_INITDB_PATH}:/docker-entrypoint-initdb.d
     healthcheck:
       test: ["CMD", "healthcheck.sh", "--connect", "--innodb_initialized"]
       start_period: 10s
