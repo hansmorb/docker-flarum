@@ -1,2 +1,0 @@
-#!/usr/bin/env sh
-exec /usr/sbin/php-fpm82 --nodaemonize

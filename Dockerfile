@@ -26,41 +26,41 @@ RUN apk add --no-progress --no-cache \
     icu-data-full \
     libcap \
     nginx \
-    php82 \
-    php82-ctype \
-    php82-curl \
-    php82-dom \
-    php82-exif \
-    php82-fileinfo \
-    php82-fpm \
-    php82-gd \
-    php82-gmp \
-    php82-iconv \
-    php82-intl \
-    php82-mbstring \
-    php82-mysqlnd \
-    php82-opcache \
-    php82-pecl-apcu \
-    php82-openssl \
-    php82-pdo \
-    php82-pdo_mysql \
-    php82-phar \
-    php82-session \
-    php82-tokenizer \
-    php82-xmlwriter \
-    php82-zip \
-    php82-zlib \
+    php84 \
+    php84-ctype \
+    php84-curl \
+    php84-dom \
+    php84-exif \
+    php84-fileinfo \
+    php84-fpm \
+    php84-gd \
+    php84-gmp \
+    php84-iconv \
+    php84-intl \
+    php84-mbstring \
+    php84-mysqlnd \
+    php84-opcache \
+    php84-pecl-apcu \
+    php84-openssl \
+    php84-pdo \
+    php84-pdo_mysql \
+    php84-phar \
+    php84-session \
+    php84-tokenizer \
+    php84-xmlwriter \
+    php84-zip \
+    php84-zlib \
     su-exec \
     s6 \
     s6-overlay
 
-RUN ln -s /usr/bin/php82 /usr/bin/php
+RUN ln -s /usr/bin/php84 /usr/bin/php
 
 RUN cd /tmp \
   && curl --progress-bar https://getcomposer.org/installer | php -- --install-dir=/usr/local/bin --filename=composer \
   && chmod +x /usr/local/bin/composer
 
-RUN sed -i "s/memory_limit = .*/memory_limit = ${PHP_MEMORY_LIMIT}/" /etc/php82/php.ini \
+RUN sed -i "s/memory_limit = .*/memory_limit = ${PHP_MEMORY_LIMIT}/" /etc/php84/php.ini \
   && mkdir -p /run/php /flarum/app
 
 RUN COMPOSER_CACHE_DIR="/tmp" composer create-project flarum/flarum:${FLARUM_VERSION} /flarum/app --stability=beta \

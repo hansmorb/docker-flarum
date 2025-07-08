@@ -13,8 +13,8 @@ This repository fixes the Flarum version to use a stable version (currently v.1.
 ## Features
 
 -   Multi-platform image: `linux/amd64`, `linux/arm64`
--   Lightweight & secure image based on **Alpine Linux 3.18**
--   **Nginx** and **PHP 8.2**
+-   Lightweight & secure image based on **Alpine Linux 3.22**
+-   **Nginx** and **PHP 8.4**
 -   Configurable Flarum version
 -   MariaDB driver
 -   OPCache extension configured

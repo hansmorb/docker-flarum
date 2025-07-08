@@ -24,7 +24,7 @@ Here is the general workflow for upgrading your Flarum instance.
     ```dockerfile
     RUN apk add --no-progress --no-cache \
         # ...
-        php82-some-new-extension \
+        php84-some-new-extension \
         # ...
     ```
 
